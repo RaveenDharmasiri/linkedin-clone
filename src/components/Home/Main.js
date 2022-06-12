@@ -1,11 +1,13 @@
 import styled from "styled-components";
 
-const Main = (props) => {
-  return <Container>Main</Container>;
-};
+const Main = () => {
+    return (
+        <Container>
+            Main
+        </Container>
+    );
+}
 
-const Container = styled.div`
-  grid-area: main;
-`;
+const Container = styled.div``;
 
 export default Main;
