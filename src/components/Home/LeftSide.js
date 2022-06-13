@@ -18,7 +18,7 @@ const LeftSide = () => {
                 </UserInfo>
 
                 <Widget>
-
+                    
                 </Widget>
             </ArtCard>
         </Container>
