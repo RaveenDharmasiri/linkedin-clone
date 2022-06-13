@@ -8,6 +8,8 @@ const RightSide = () => {
     );
 }
 
-const Container = styled.div``;
+const Container = styled.div`
+    grid-area: rightside;
+`;
 
 export default RightSide;
