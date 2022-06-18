@@ -7,7 +7,7 @@ import BusinessCenterIcon from '@material-ui/icons/BusinessCenter';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import ChatIcon from '@material-ui/icons/Chat';
 
-import HeaderOption from "./HeaderOption";
+import HeaderOption from "./HeaderOption/HeaderOption";
 
 function Header() {
     return(
