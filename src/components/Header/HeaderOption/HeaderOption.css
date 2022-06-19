@@ -7,6 +7,15 @@
     cursor: pointer;
 }
 
+.headerOption > a {
+    text-decoration: none;
+    color: gray;
+}
+
+.headerOption > a:hover {
+    color: black;
+}
+
 .headerOption:hover {
     color: black;
 }

@@ -1,5 +1,6 @@
 import "./Feed.css";
-import React, {useState} from "react";
+import React, { useState } from "react";
+import { useEffect } from "react";
 import InputOption from "./InputOption/InputOption";
 import Post from "./Post/Post";
 
@@ -10,38 +11,86 @@ import SubscriptionsIcon from "@material-ui/icons/Subscriptions";
 import EventNoteIcon from "@material-ui/icons/Event";
 import CalendarViewDayIcon from "@material-ui/icons/CalendarToday";
 
+// firebase
+import { db } from "../../../firebase";
+import firebase from "firebase/compat/app";
 
 const Feed = () => {
-    const [posts, setPosts] = useState([]);
+  const [input, setInput] = useState("");
+  const [posts, setPosts] = useState([]);
 
-    return (
-        <div className="feed">
-            <div className="feed__inputContainer">
-                <div className="feed__input">
-                    <CreateIcon />
+  useEffect(() => {
+    db.collection("posts").orderBy("timestamp", "desc").onSnapshot((snapshot) => {
+      setPosts(
+        snapshot.docs.map((doc) => ({
+          id: doc.id,
+          data: doc.data(),
+        }))
+      );
+    });
+  }, []);
 
-                    <form action="">
-                        <input type="text" />
-                        <button type="submit">Send</button>
-                    </form>
-                </div>
+  const sendPost = (e) => {
+    e.preventDefault();
 
-                <div className="feed__inputOptions">
-                    <InputOption Icon={ImageIcon} title="Photo" color="#70B5f9"/>
-                    <InputOption Icon={SubscriptionsIcon} title="Video" color="#E7A33E"/>
-                    <InputOption Icon={EventNoteIcon} title="Event" color="#C0CBCD"/>
-                    <InputOption Icon={CalendarViewDayIcon} title="Write Article" color="#7FC15E"/>
-                </div>
-            </div>
+    if (input !== "") {
+      db.collection("posts").add({
+        name: "Raveen Dharmasiri",
+        description: "This is a test",
+        message: input,
+        photoUrl: "",
+        timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+      });
+    }
 
-            {posts.map( (post) => {
-                return (<Post name={post.name} description={post.description} message={post.message}/> );
-            })}
+    setInput("");
+  };
 
-            <Post name="Raveen Dharmasiri" description="This is a test" message="WOW this worked" />
-            
+  return (
+    <div className="feed">
+      <div className="feed__inputContainer">
+        <div className="feed__input">
+          <CreateIcon />
+
+          <form action="">
+            <input
+              type="text"
+              value={input}
+              onChange={(e) => {
+                setInput(e.target.value);
+              }}
+            />
+            <button onClick={sendPost} type="submit">
+              Send
+            </button>
+          </form>
         </div>
-    );
-}
+
+        <div className="feed__inputOptions">
+          <InputOption Icon={ImageIcon} title="Photo" color="#70B5f9" />
+          <InputOption Icon={SubscriptionsIcon} title="Video" color="#E7A33E" />
+          <InputOption Icon={EventNoteIcon} title="Event" color="#C0CBCD" />
+          <InputOption
+            Icon={CalendarViewDayIcon}
+            title="Write Article"
+            color="#7FC15E"
+          />
+        </div>
+      </div>
+
+      {posts.map((post) => {
+        return (
+          <Post
+            key={post.id}
+            name={post.data.name}
+            description={post.data.description}
+            message={post.data.message}
+          />
+        );
+      })}
+
+    </div>
+  );
+};
 
 export default Feed;
