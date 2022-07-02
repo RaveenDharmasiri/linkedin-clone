@@ -15,19 +15,28 @@ import CalendarViewDayIcon from "@material-ui/icons/CalendarToday";
 import { db } from "../../../firebase";
 import firebase from "firebase/compat/app";
 
+//Redux
+import { useSelector } from "react-redux/es/hooks/useSelector";
+import { selectUser } from "../../../features/userSlice";
+
+import FlipMove from "react-flip-move";
+
 const Feed = () => {
+  const user = useSelector(selectUser);
   const [input, setInput] = useState("");
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
-    db.collection("posts").orderBy("timestamp", "desc").onSnapshot((snapshot) => {
-      setPosts(
-        snapshot.docs.map((doc) => ({
-          id: doc.id,
-          data: doc.data(),
-        }))
-      );
-    });
+    db.collection("posts")
+      .orderBy("timestamp", "desc")
+      .onSnapshot((snapshot) => {
+        setPosts(
+          snapshot.docs.map((doc) => ({
+            id: doc.id,
+            data: doc.data(),
+          }))
+        );
+      });
   }, []);
 
   const sendPost = (e) => {
@@ -35,10 +44,9 @@ const Feed = () => {
 
     if (input !== "") {
       db.collection("posts").add({
-        name: "Raveen Dharmasiri",
-        description: "This is a test",
+        name: user.displayName,
+        description: user.email,
         message: input,
-        photoUrl: "",
         timestamp: firebase.firestore.FieldValue.serverTimestamp(),
       });
     }
@@ -77,7 +85,7 @@ const Feed = () => {
           />
         </div>
       </div>
-
+      <FlipMove>
       {posts.map((post) => {
         return (
           <Post
@@ -88,7 +96,7 @@ const Feed = () => {
           />
         );
       })}
-
+      </FlipMove>
     </div>
   );
 };
