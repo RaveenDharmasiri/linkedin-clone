@@ -1,0 +1,45 @@
+.rightside {
+  position: sticky;
+  top: 80px;
+  flex: 0.2;
+  background-color: white;
+  border-radius: 10px;
+  border: 1px solid lightgray;
+  height: fit-content;
+  padding-bottom: 10px;
+}
+
+.rightside__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.rightside__header > h2 {
+    font-size: 18px;
+    font-weight: 400;
+}
+
+.rightside__article:hover {
+    background-color: whitesmoke;
+    cursor: pointer;
+}
+
+.rightside__articleLeft {
+    margin-right: 5px;
+}
+
+.rightside__articleRight {
+    padding: 15px;
+}
+
+.rightside__articleRight > h4 {
+    font-weight: bold;
+    font-size: 12px;
+}
+
+.rightside__articleRight > p {
+    font-size: 12px;
+}
+

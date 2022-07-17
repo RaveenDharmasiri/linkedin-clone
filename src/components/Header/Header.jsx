@@ -13,8 +13,7 @@ import ChatIcon from "@material-ui/icons/Chat";
 import { useDispatch } from "react-redux/es/exports";
 import { logout } from "../../features/userSlice";
 import { auth } from "../../firebase";
-import { selectUser } from "../../features/userSlice";
-import { useSelector } from "react-redux/es/hooks/useSelector";
+import { useSelector, selectUser } from "../commonExports/reduxExport";
 
 import HeaderOption from "./HeaderOption/HeaderOption";
 

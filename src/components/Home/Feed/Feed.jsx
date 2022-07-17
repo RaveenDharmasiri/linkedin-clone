@@ -16,8 +16,7 @@ import { db } from "../../../firebase";
 import firebase from "firebase/compat/app";
 
 //Redux
-import { useSelector } from "react-redux/es/hooks/useSelector";
-import { selectUser } from "../../../features/userSlice";
+import { useSelector, selectUser } from "../../commonExports/reduxExport";
 
 import FlipMove from "react-flip-move";
 

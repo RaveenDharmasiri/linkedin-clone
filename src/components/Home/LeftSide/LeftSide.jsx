@@ -1,11 +1,10 @@
 import "./LeftSide.css";
 
 //Redux
-import { useSelector } from "react-redux/es/hooks/useSelector";
+import { useSelector, selectUser } from "../../commonExports/reduxExport";
 
 // material-ui
 import { Avatar } from "@material-ui/core";
-import { selectUser } from "../../../features/userSlice";
 
 const LeftSide = () => {
 

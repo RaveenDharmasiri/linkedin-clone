@@ -1,7 +1,6 @@
 import "./HeaderOption.css";
 
-import { useSelector } from "react-redux/es/hooks/useSelector";
-import { selectUser } from "../../../features/userSlice";
+import { useSelector, selectUser } from "../../commonExports/reduxExport";
 
 // material-ui
 import { Avatar } from "@material-ui/core";
@@ -16,7 +15,7 @@ function HeaderOption({avatar, Icon, title, onClick }) {
         <Avatar className="headerOption__icon" src={user?.photoUrl}>
           {user?.displayName[0]}
         </Avatar>
-      )}
+      )}	
       <a href={title}>
         <h3 className="headerOption__title">{title}</h3>
       </a>

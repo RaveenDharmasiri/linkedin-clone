@@ -16,6 +16,7 @@ import Header from "./components/Header/Header";
 import Feed from "./components/Home/Feed/Feed";
 import LeftSide from "./components/Home/LeftSide/LeftSide";
 import Login from "./components/Login/Login";
+import RightSide from "./components/Home/RightSide/RightSide";
 
 function App() {
   const user = useSelector(selectUser);
@@ -47,6 +48,7 @@ function App() {
         <div className="app__body">
           <LeftSide />
           <Feed />
+          <RightSide />
         </div>
       )}
     </div>
